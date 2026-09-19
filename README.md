@@ -1,1 +1,0 @@
-v6.9.8 questionnaire results in Analysis; summed family scores with true denominators; first home after login; Metric Explorer adds questionnaire detail and memory item selectors; baseline unchanged.
