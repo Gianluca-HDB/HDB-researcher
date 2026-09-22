@@ -1,1 +1,0 @@
-HDB Researcher v7.0.0: MPS retired; Blood retired; questionnaire aggregate scores retired; endpoint hierarchy; baseline stability; test-retest panel; disease-oriented research views; population vs personal references separated; frozen baseline unchanged.
