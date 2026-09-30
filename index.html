@@ -997,7 +997,8 @@ button:not(.alt):not(:disabled):hover{transform:translateY(-1px)!important;box-s
 button:not(.alt):not(:disabled):active{transform:translateY(0)!important;box-shadow:0 4px 10px rgba(12,91,81,.10)!important}
 button.alt{background:linear-gradient(180deg,#fff,#fbfcfb)!important;color:#30463f!important;border:1px solid var(--rc40-line-strong)!important;box-shadow:0 2px 7px rgba(17,48,40,.035)!important}
 button.alt:hover{background:#f7faf8!important;border-color:#afc8c1!important}
-button[onclick*="openHome"],button[onclick*="openDashboard"]{font-weight:760!important}button:disabled{opacity:.42!important;filter:grayscale(.15);cursor:not-allowed!important}
+button[onclick*="openHome"],button[onclick*="openDashboard"]{font-weight:760!important}
+button:disabled{opacity:.42!important;filter:grayscale(.15);cursor:not-allowed!important}
 
 /* Forms */
 label{color:#4e625b!important;font-weight:760!important;letter-spacing:.01em!important;margin-top:3px!important}
@@ -1996,7 +1997,8 @@ ferritin | ng/mL | 20 | 200" rows="4" style="width:100%;box-sizing:border-box;fo
 </div></main><script data-inlined-from="js/01-const-x-document-getelementbyid-x-hideall-document-q.js">
 const $=x=>document.getElementById(x),hideAll=()=>document.querySelectorAll(".card > section").forEach(x=>x.classList.add("hidden"));let data={participant:"",session:"",rt:[],tap:[],tap_right:[],tap_left:[],tap_pressure_right:[],tap_pressure_left:[],gonogo:[],memory:[]},timer,state="",t0=0,trial=0,falseStarts=0;
 const median=a=>{let s=[...a].sort((x,y)=>x-y),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2},mean=a=>a.reduce((x,y)=>x+y,0)/a.length,sd=a=>{if(a.length<2)return 0;let m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1))};
-function localDateISO(d=new Date()){let z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}function researcherResultsOnlyRoute(id){const map={vitals:"Vitals",physical:"Physical",context:"Context",sleep:"Sleep"};if(id==="neuro"){openQuestionnaireResults("all");return true}if(map[id]){openMetricExplorer();setTimeout(()=>{const d=$("metricDomain");if(d){d.value=map[id];d.dispatchEvent(new Event("change"))}},0);return true}if(["testintro","rt","tap","gonogo","adaptivegg","memory"].includes(id)){openMetricExplorer();return true}return false}
+function localDateISO(d=new Date()){let z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}
+function researcherResultsOnlyRoute(id){const map={vitals:"Vitals",physical:"Physical",context:"Context",sleep:"Sleep"};if(id==="neuro"){openQuestionnaireResults("all");return true}if(map[id]){openMetricExplorer();setTimeout(()=>{const d=$("metricDomain");if(d){d.value=map[id];d.dispatchEvent(new Event("change"))}},0);return true}if(["testintro","rt","tap","gonogo","adaptivegg","memory"].includes(id)){openMetricExplorer();return true}return false}
 function showPrimaryScreen(id){if(researcherResultsOnlyRoute(id))return;
  document.querySelectorAll(".card > section").forEach(el=>{
    el.classList.add("hidden");
@@ -2995,7 +2997,8 @@ function initTestSession(mode){
 let pendingTestMode=null;
 const NDB_TEST_INTROS={
  cognitive:{
-  kicker:"TEST COGNITIVO · ISTRUZIONI",  title:"Test cognitivo",
+  kicker:"TEST COGNITIVO · ISTRUZIONI",
+  title:"Test cognitivo",
   lead:"Una breve sessione standardizzata che misura velocità di risposta e controllo inibitorio. Leggi le due parti prima di iniziare.",
   items:[
    ["1 · Tempo di reazione","20 risposte valide. Attendi senza toccare lo schermo e tocca soltanto quando compare il bersaglio. I tocchi anticipati vengono registrati come false partenze e non consumano una prova valida."],
@@ -3994,7 +3997,8 @@ async function restore(){
  const uid=participantId();if(uid!=='none')await loadParticipant(uid,'dashboard',false);else refreshVisible();
 }
 function installClearUI(){
- clearObsoleteMasks(); const data=E('data'),summary=E('datasummary');if(!data||!summary)return;
+ clearObsoleteMasks();
+ const data=E('data'),summary=E('datasummary');if(!data||!summary)return;
  let box=E('ndbResearchSelectiveDelete');
  if(!box){box=document.createElement('section');box.id='ndbResearchSelectiveDelete';summary.parentNode.insertBefore(box,summary)}
  box.innerHTML='<b>Pulisci Dashboard / Esplora metriche</b><p>Il Clear nasconde solo i record presenti in questo momento. Non usa più un cutoff temporale e non può quindi nascondere test futuri.</p><div class="ndb-delete-row"><label>Modulo <select id="ndbResearchDeleteDataset"></select></label><button type="button" id="ndb89ClearModule">CLEAR MODULO</button></div><div class="ndb-delete-instance"><b>Singola sessione</b><div class="ndb-delete-row"><label>Sessione <select id="ndbResearchDeleteInstance"></select></label><button type="button" id="ndb89ClearOne">CLEAR SESSIONE</button></div></div>';
@@ -4993,7 +4997,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script id="ndbRC52FinalAudit">
 (()=>{'use strict';
  function run(){const c=[],add=(n,ok,d='')=>c.push({name:n,ok:!!ok,detail:d});
-  add('release',['RC52','RC53','RC54','RC55','RC56','RC58','RC59','RC61','RC62','RC62','RC64'].includes(document.querySelector('meta[name="ndb-release"]')?.content));  try{const b=window.NDBBaselineSelfTestRC26?.();add('baseline-engine',!!b?.ok)}catch(e){add('baseline-engine',false,e.message)}
+  add('release',['RC52','RC53','RC54','RC55','RC56','RC58','RC59','RC61','RC62','RC62','RC64'].includes(document.querySelector('meta[name="ndb-release"]')?.content));
+  try{const b=window.NDBBaselineSelfTestRC26?.();add('baseline-engine',!!b?.ok)}catch(e){add('baseline-engine',false,e.message)}
   try{const a=window.NDBRC37RunResearcherAudit?.();add('prior-integrity-audit',!!a?.ok,JSON.stringify(a?.checks||[]))}catch(e){add('prior-integrity-audit',false,e.message)}
   try{const cata=window.metricCatalog?.()||[],fm=cata.filter(m=>(window.metricExplorerGroup?.(m)||m.domain)==='Facial Motor AI');add('facial-metrics-present',fm.length>=41,String(fm.length));add('facial-baseline-explicit',fm.filter(m=>!m.qc_only).every(m=>Array.isArray(m.baseline_points)))}catch(e){add('facial-metrics',false,e.message)}
   const out={ok:c.every(x=>x.ok),release:'RC52',checks:c,at:new Date().toISOString()};window.NDBRC52ResearcherAuditResult=out;return out
